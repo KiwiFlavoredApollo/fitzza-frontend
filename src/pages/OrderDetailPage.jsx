@@ -42,6 +42,42 @@ export const OrderDetail = () => {
           </HStack>
         </Card.Body>
       </Card.Root>
+      {/* 배송 현황 섹션 */}
+      <Card.Root variant="subtle" mb="4">
+        <Card.Body gap="4">
+          <Text fontWeight="bold" textStyle="sm">배송 현황</Text>
+          <Flex justify="space-between" align="center" position="relative" px="2">
+            {/* 스텝퍼 아이템들 */}
+            <Stack align="center" gap="1">
+              <Circle size="6" bg="orange.500" color="white"><LuCheck size="12" /></Circle>
+              <Text textStyle="2xs" color="fg.muted">발송 완료</Text>
+            </Stack>
+            <Stack align="center" gap="1">
+              <Circle size="6" bg="orange.500" color="white"><LuCheck size="12" /></Circle>
+              <Text textStyle="2xs" color="fg.muted">입고 완료</Text>
+            </Stack>
+            <Stack align="center" gap="1">
+              <Circle size="6" bg="orange.500" color="white"><Box boxSize="2" bg="white" rounded="full" /></Circle>
+              <Text textStyle="2xs" fontWeight="bold">배송 중</Text>
+            </Stack>
+            <Stack align="center" gap="1">
+              <Circle size="6" bg="bg.muted" color="fg.muted">📦</Circle>
+              <Text textStyle="2xs" color="fg.muted">배송 완료</Text>
+            </Stack>
+          </Flex>
+        </Card.Body>
+      </Card.Root>
+
+      {/* 배송지 정보 섹션 */}
+      <Card.Root variant="subtle" mb="4">
+        <Card.Body gap="2">
+          <Text fontWeight="bold" textStyle="sm">배송지</Text>
+          <Text textStyle="sm" fontWeight="medium">김예시</Text>
+          <Text textStyle="xs" color="fg.muted">010-****-1234</Text>
+          <Text textStyle="xs" color="fg.muted">서울시 OO구 OO로 00</Text>
+          <Text textStyle="xs" color="fg.muted">예시 아파트 101동 101호</Text>
+        </Card.Body>
+      </Card.Root>
     </Box>
   )
 }
