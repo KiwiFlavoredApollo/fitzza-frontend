@@ -1,5 +1,21 @@
-import { Box, Card, Flex, Heading, HStack, Image, Text } from "@chakra-ui/react"
-import { LuChevronLeft } from "react-icons/lu"
+import {
+  Box,
+  Card,
+  Circle,
+  Flex,
+  Heading,
+  HStack,
+  Image,
+  Separator,
+  Stack,
+  Text
+} from "@chakra-ui/react"
+import {
+  LuChevronLeft,
+  LuCheck,
+  LuFileText,
+  LuPackage
+} from "react-icons/lu"
 
 export const OrderDetail = () => {
   return (
@@ -7,7 +23,7 @@ export const OrderDetail = () => {
 
       <HStack mb="4" justify="space-between">
         <HStack gap="2">
-          <LuChevronLeft size="24" />
+          <LuChevronLeft size="24"/>
           <Heading size="md">주문 상세</Heading>
         </HStack>
       </HStack>
@@ -41,21 +57,20 @@ export const OrderDetail = () => {
         </Card.Body>
       </Card.Root>
 
-      <Card.Root variant="subtle" mb="4">
+      <Card.Root variant="subtle" mb="4" colorPalette="orange">
         <Card.Body gap="4">
           <Text fontWeight="bold" textStyle="sm">배송 현황</Text>
           <Flex justify="space-between" align="center" position="relative" px="2">
-
             <Stack align="center" gap="1">
-              <Circle size="6" bg="orange.500" color="white"><LuCheck size="12" /></Circle>
+              <Circle size="6" bg="colorPalette.solid" color="white"><LuCheck size="12"/></Circle>
               <Text textStyle="2xs" color="fg.muted">발송 완료</Text>
             </Stack>
             <Stack align="center" gap="1">
-              <Circle size="6" bg="orange.500" color="white"><LuCheck size="12" /></Circle>
+              <Circle size="6" bg="colorPalette.solid" color="white"><LuCheck size="12"/></Circle>
               <Text textStyle="2xs" color="fg.muted">입고 완료</Text>
             </Stack>
             <Stack align="center" gap="1">
-              <Circle size="6" bg="orange.500" color="white"><Box boxSize="2" bg="white" rounded="full" /></Circle>
+              <Circle size="6" bg="colorPalette.solid" color="white"><Box boxSize="2" bg="white" rounded="full"/></Circle>
               <Text textStyle="2xs" fontWeight="bold">배송 중</Text>
             </Stack>
             <Stack align="center" gap="1">
@@ -76,7 +91,7 @@ export const OrderDetail = () => {
         </Card.Body>
       </Card.Root>
 
-      <Card.Root variant="subtle" mb="4">
+      <Card.Root variant="subtle" mb="4" colorPalette="orange">
         <Card.Body gap="3">
           <Text fontWeight="bold" textStyle="sm">결제 내역</Text>
           <HStack justify="space-between" textStyle="xs">
@@ -95,10 +110,10 @@ export const OrderDetail = () => {
             <Text color="fg.muted">배송비</Text>
             <Text>+ 3,000원</Text>
           </HStack>
-          <Separator my="1" />
+          <Separator my="1"/>
           <HStack justify="space-between">
             <Text fontWeight="bold" textStyle="sm">총 결제 금액</Text>
-            <Text fontWeight="bold" textStyle="md" color="orange.500">286,000원</Text>
+            <Text fontWeight="bold" textStyle="md" color="colorPalette.solid">286,000원</Text>
           </HStack>
         </Card.Body>
       </Card.Root>
@@ -111,14 +126,14 @@ export const OrderDetail = () => {
           </Stack>
           <HStack justify="space-between" py="1" cursor="pointer">
             <HStack gap="2">
-              <LuFileText />
+              <LuFileText/>
               <Text textStyle="sm">취소 안내</Text>
             </HStack>
             <Text color="fg.muted">&gt;</Text>
           </HStack>
           <HStack justify="space-between" py="1" cursor="pointer">
             <HStack gap="2">
-              <LuPackage />
+              <LuPackage/>
               <Text textStyle="sm">반품 안내</Text>
             </HStack>
             <Text color="fg.muted">&gt;</Text>
