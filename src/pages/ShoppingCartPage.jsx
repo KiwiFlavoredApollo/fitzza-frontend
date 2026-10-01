@@ -7,12 +7,14 @@ import { LuX } from 'react-icons/lu'
 
 export const ShoppingCartPage = () => {
   return (
-    <Box position="relative" minH="100vh" pb={28} bg="bg">
-      <Container maxW="container.xl" mx="auto" py={10} px={5}>
-        <Box mb={6}>
+    <Box position="relative" minH="100vh" pt={24} pb={28} bg="bg">
+      <Box position="fixed" top={0} left={0} right={0} zIndex={10} bg="bg" px={5} py={4}>
+        <Container maxW="7xl" mx="auto" px={0}>
           <AppBar />
-        </Box>
+        </Container>
+      </Box>
 
+      <Container maxW="5xl" mx="auto" px={5}>
         <Stack gap={6}>
           <Text textStyle="lg" fontWeight="bold">
             장바구니
@@ -26,24 +28,32 @@ export const ShoppingCartPage = () => {
                   return (
                     <Card.Root key={index} variant="subtle" borderWidth="thin" borderColor="border.subtle" bg="bg.panel" position="relative">
                       <Card.Body>
-                        <Stack direction="row" align="center" gap={4}>
-                          <Image boxSize="24" objectFit="cover" rounded="xl" src={exampleProductImage} />
-                          <Stack gap={1}>
+                        <Grid
+                          templateColumns="80px 1fr auto"
+                          templateAreas={`"image info action"`}
+                          gap={4}
+                          alignItems="center"
+                        >
+                          <Box gridArea="image">
+                            <Image boxSize="20" objectFit="cover" rounded="xl" src={exampleProductImage} />
+                          </Box>
+
+                          <Stack gridArea="info" gap={1}>
                             <Text textStyle="sm" fontWeight="semibold">{product.name}</Text>
                             <Text textStyle="xs" color="fg.muted">{product.price.toLocaleString()} 원</Text>
                           </Stack>
-                          <IconButton
-                            position="absolute"
-                            top={3}
-                            right={3}
-                            aria-label="삭제"
-                            rounded="full"
-                            variant="ghost"
-                            size="xs"
-                          >
-                            <Box as={LuX} boxSize={4} />
-                          </IconButton>
-                        </Stack>
+
+                          <Box gridArea="action" justifySelf="end">
+                            <IconButton
+                              aria-label="삭제"
+                              rounded="full"
+                              variant="ghost"
+                              size="xs"
+                            >
+                              <Box as={LuX} boxSize={4} />
+                            </IconButton>
+                          </Box>
+                        </Grid>
                       </Card.Body>
                     </Card.Root>
                   )
@@ -71,7 +81,9 @@ export const ShoppingCartPage = () => {
         </Stack>
       </Container>
 
-      <TabBar />
+      <Box position="fixed" bottom={0} left={0} right={0} zIndex={10} bg="bg">
+        <TabBar />
+      </Box>
     </Box>
   )
 }
