@@ -14,7 +14,7 @@ export const TryOnPage = () => {
         </Container>
       </Box>
 
-      <Container maxW="3xl" mx="auto" px={5}>
+      <Container maxW="xl" mx="auto" px={5}>
         <Stack gap={6}>
 
           <Box>
