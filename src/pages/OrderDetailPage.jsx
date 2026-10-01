@@ -33,7 +33,6 @@ export const OrderDetail = () => {
 
       <Container maxW="5xl" mx="auto" px={5}>
         <Stack gap={6}>
-          {/* 상단 네비게이션 및 타이틀 영역 (Grid 분리) */}
           <Grid templateColumns="auto 1fr" alignItems="center" gap={2}>
             <GridItem cursor="pointer" onClick={() => window.history.back()}>
               <Box as={LuChevronLeft} boxSize={6} />
@@ -52,7 +51,7 @@ export const OrderDetail = () => {
             <Stack gap={6}>
               <Card.Root variant="subtle" borderWidth="thin" borderColor="border.subtle" bg="bg.panel">
                 <Card.Body>
-                  <Grid templateColumns="80px 1fr" gap={4} alignItems="center">
+                  <Grid templateColumns="5rem 1fr" gap={4} alignItems="center">
                     <GridItem>
                       <Image
                         src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop"
@@ -79,7 +78,7 @@ export const OrderDetail = () => {
                 </Card.Body>
               </Card.Root>
 
-                <Card.Root variant="subtle" borderWidth="thin" borderColor="border.subtle" bg="bg.panel" colorPalette="orange">
+              <Card.Root variant="subtle" borderWidth="thin" borderColor="border.subtle" bg="bg.panel" colorPalette="orange">
                 <Card.Body gap={4}>
                   <Text fontWeight="bold" textStyle="sm">배송 현황</Text>
                   <Grid templateColumns="repeat(4, 1fr)" gap={2} textAlign="center">
@@ -110,6 +109,7 @@ export const OrderDetail = () => {
                   </Grid>
                 </Card.Body>
               </Card.Root>
+
               <Card.Root variant="subtle" borderWidth="thin" borderColor="border.subtle" bg="bg.panel">
                 <Card.Body gap={2}>
                   <Text fontWeight="bold" textStyle="sm" mb={1}>배송지</Text>

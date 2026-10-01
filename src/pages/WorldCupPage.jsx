@@ -77,7 +77,7 @@ export default function WorldCupPage() {
             </GridItem>
 
             <GridItem textAlign="center">
-              <Box w="100%" h={{ base: "64", md: "72" }} borderRadius="2xl" overflow="hidden" mb={4} borderWidth="thin" borderColor="border.subtle">
+              <Box w="100%" h={{ base: "sm", md: "md" }} borderRadius="2xl" overflow="hidden" mb={4} borderWidth="thin" borderColor="border.subtle">
                 <Image
                   src={winnerProduct.image}
                   alt={winnerProduct.name}
@@ -201,7 +201,7 @@ export default function WorldCupPage() {
                 transition="all 0.2s"
                 onClick={() => handleSelect(leftProduct)}
               >
-                <Box w="100%" h={{ base: "36", md: "56" }} borderRadius="xl" overflow="hidden" mb={3}>
+                <Box w="100%" h={{ base: "40", md: "60" }} borderRadius="xl" overflow="hidden" mb={3}>
                   <Image
                     src={leftProduct.image}
                     alt={leftProduct.name}
@@ -214,7 +214,6 @@ export default function WorldCupPage() {
                   {leftProduct.name}
                 </Text>
               </GridItem>
-
 
               <GridItem zIndex="10">
                 <Center
@@ -231,7 +230,6 @@ export default function WorldCupPage() {
                 </Center>
               </GridItem>
 
-
               <GridItem
                 borderWidth="thin"
                 borderColor="border.subtle"
@@ -243,7 +241,7 @@ export default function WorldCupPage() {
                 transition="all 0.2s"
                 onClick={() => handleSelect(rightProduct)}
               >
-                <Box w="100%" h={{ base: "36", md: "56" }} borderRadius="xl" overflow="hidden" mb={3}>
+                <Box w="100%" h={{ base: "40", md: "60" }} borderRadius="xl" overflow="hidden" mb={3}>
                   <Image
                     src={rightProduct.image}
                     alt={rightProduct.name}

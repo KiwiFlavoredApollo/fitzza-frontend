@@ -13,7 +13,7 @@ import {
   Box,
   Center
 } from '@chakra-ui/react';
-import {LuMail, LuUser, LuLockKeyhole} from "react-icons/lu";
+import { LuMail, LuUser, LuLock } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 import { AppBar } from '../components/AppBar.jsx';
 import { TabBar } from '../components/TabBar.jsx';
@@ -106,7 +106,7 @@ export default function SignupPage() {
 
                   <GridItem w="100%">
                     <Field.Root required w="100%">
-                      <InputGroup startElement={<Box as={LuLockKeyhole} boxSize={5} color="fg.muted" />}>
+                      <InputGroup startElement={<Box as={LuLock} boxSize={5} color="fg.muted" />}>
                         <Input
                           type="password"
                           name="password"
