@@ -1,40 +1,79 @@
-import { Container, Grid, GridItem, Stack, Card, Image, Text, IconButton } from '@chakra-ui/react'
+import {
+  Container,
+  Grid,
+  GridItem,
+  Stack,
+  Card,
+  Image,
+  Text,
+  IconButton, Box, Heading, Flex, Button, Icon,
+} from '@chakra-ui/react'
 import { AppBar } from '../components/AppBar.jsx'
 import { TabBar } from '../components/TabBar.jsx'
-import exampleProductImage from '/src/assets/hero.png'
-import { LuX } from 'react-icons/lu'
+import { LuHeart, LuTrophy, LuX } from 'react-icons/lu'
+import { products } from '../data/products.js'
+import exampleProductImage from '/src/assets/react.svg'
+import { useNavigate } from 'react-router-dom'
 
 export const LikesPage = () => {
+  const navigate = useNavigate();
+
   return (
-    <>
-    <Container maxWidth="xl">
-      <Stack paddingY={ 4 } paddingBottom="96px" height={ '100vh' } gap={ 4 }>
-        <AppBar></AppBar>
-        <Grid templateColumns={ 'repeat(3, 1fr)' } gap={ 2 }>
+    <Stack paddingY={ 4 } gap={ 4 }>
+      <AppBar></AppBar>
+      <Container maxWidth={ '7xl' }>
+        <Flex direction={ 'row' } justifyContent={ 'space-between' }>
+          <Heading>찜</Heading>
+          <Button
+            rounded={ 'full' }
+            onClick={ () => navigate('/worldcup') }
+          >
+            <Icon><LuTrophy></LuTrophy></Icon>
+            <Text>월드컵</Text>
+          </Button>
+        </Flex>
+      </Container>
+      <Container maxWidth={ '5xl' }>
+        <Grid
+          templateColumns={ { base: 'repeat(3, 1fr)', md: 'repeat(5, 1fr)' } }
+          gapX={ 4 }
+          gapY={ 12 }
+        >
           {
-            Array.from({ length: 9 }, (_, index) => (
-              <Card.Root key={ index }>
-                <Image src={ exampleProductImage }></Image>
-                <Card.Body>
-                  <Card.Title>Name</Card.Title>
-                  <Text>{ (1_000).toLocaleString() } 원</Text>
-                </Card.Body>
-                <IconButton
-                  position={ 'absolute' }
-                  right={ '2' }
-                  top={ '2' }
-                  rounded={ 'full' }
-                  size={ 'xs' }
+            products.map((product, index) => (
+              <Box
+                key={ index }
+              >
+                <Box
+                  position={ 'relative' }
                 >
-                  <LuX></LuX>
-                </IconButton>
-              </Card.Root>
+                  <Image
+                    width={ '100%' }
+                    aspectRatio={ 1 }
+                    objectFit={ 'contain' }
+                    src={ exampleProductImage }
+                  ></Image>
+                  <IconButton
+                    position={ 'absolute' }
+                    bottom={ '2' }
+                    right={ '2' }
+                    rounded={ 'full' }
+                    variant={ 'ghost' }
+                  >
+                    <LuHeart
+                      color={ 'red' }
+                      fill={ 'red' }
+                    ></LuHeart>
+                  </IconButton>
+                </Box>
+                <Heading>{ product.name }</Heading>
+                <Text>{ (product.price).toLocaleString() } 원</Text>
+              </Box>
             ))
           }
         </Grid>
-      </Stack>
-    </Container>
-    <TabBar />
-    </>
+        <TabBar/>
+      </Container>
+    </Stack>
   )
 }
