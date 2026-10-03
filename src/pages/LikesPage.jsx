@@ -13,8 +13,11 @@ import { TabBar } from '../components/TabBar.jsx'
 import { LuHeart, LuTrophy, LuX } from 'react-icons/lu'
 import { products } from '../data/products.js'
 import exampleProductImage from '/src/assets/react.svg'
+import { useNavigate } from 'react-router-dom'
 
 export const LikesPage = () => {
+  const navigate = useNavigate();
+
   return (
     <Stack paddingY={ 4 } gap={ 4 }>
       <AppBar></AppBar>
@@ -23,6 +26,7 @@ export const LikesPage = () => {
           <Heading>찜</Heading>
           <Button
             rounded={ 'full' }
+            onClick={ () => navigate('/worldcup') }
           >
             <LuTrophy></LuTrophy>
             <Text>월드컵</Text>
