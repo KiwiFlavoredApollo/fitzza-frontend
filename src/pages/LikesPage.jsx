@@ -6,7 +6,7 @@ import {
   Card,
   Image,
   Text,
-  IconButton, Box, Heading, Flex, Button,
+  IconButton, Box, Heading, Flex, Button, Icon,
 } from '@chakra-ui/react'
 import { AppBar } from '../components/AppBar.jsx'
 import { TabBar } from '../components/TabBar.jsx'
@@ -28,7 +28,7 @@ export const LikesPage = () => {
             rounded={ 'full' }
             onClick={ () => navigate('/worldcup') }
           >
-            <LuTrophy></LuTrophy>
+            <Icon><LuTrophy></LuTrophy></Icon>
             <Text>월드컵</Text>
           </Button>
         </Flex>
