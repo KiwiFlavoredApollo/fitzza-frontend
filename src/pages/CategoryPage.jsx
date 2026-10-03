@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Box, Button, Container, Grid, GridItem, Heading, Icon, SimpleGrid, Stack, Text } from '@chakra-ui/react'
+import { Button, Container, Grid, GridItem, Heading, Icon, SimpleGrid, Stack, Text } from '@chakra-ui/react'
 import { LuChevronRight } from 'react-icons/lu'
 import { useNavigate } from 'react-router-dom'
 import { AppBar } from '../components/AppBar.jsx'
@@ -16,64 +16,72 @@ export const CategoryPage = () => {
 
   return (
     <>
-    <Container maxWidth={ 'xl' }>
-      <Stack paddingY={ '4' } paddingBottom="96px" height={ '100vh' } gap={ '4' }>
+    <Stack paddingY={ '4' } paddingBottom="96px" height={ '100vh' } gap={ '4' }>
+      <Container maxWidth={ '3xl' }>
         <AppBar></AppBar>
-        <Heading size={ 'xl' }>카테고리</Heading>
-        <Grid templateColumns={ '7rem 1fr' } gap={ '4' } flex={ '1' } minHeight={ '0' }>
-          <GridItem overflowY={ 'auto' }>
-            <Stack gap={ '1' }>
-              {
-                categories.map((category) => (
-                  <Button
-                    key={ category.name }
-                    variant={ selected.name === category.name ? 'subtle' : 'ghost' }
-                    justifyContent={ 'flex-start' }
-                    onClick={ () => setSelected(category) }
-                  >
-                    { category.name }
-                  </Button>
-                ))
-              }
-            </Stack>
-          </GridItem>
-          <GridItem overflowY={ 'auto' }>
-            <Stack gap={ '6' } paddingRight={ '2' }>
-              {
-                sections.map((section) => (
-                  <Box key={ section.name }>
+      </Container>
+      <Container maxWidth={ '3xl' } flex={ '1' } minHeight={ '0' }>
+        <Stack height={ 'full' } gap={ '6' }>
+          <Heading size={ 'xl' }>카테고리</Heading>
+          <Grid templateColumns={ '5.5rem 1fr' } gap={ '3' } flex={ '1' } minHeight={ '0' }>
+            <GridItem overflowY={ 'auto' }>
+              <Stack gap={ '1' }>
+                {
+                  categories.map((category) => (
                     <Button
-                      variant={ 'ghost' }
-                      width={ 'full' }
-                      justifyContent={ 'space-between' }
-                      onClick={ () => search(section.name) }
+                      key={ category.name }
+                      variant={ selected.name === category.name ? 'subtle' : 'ghost' }
+                      justifyContent={ 'flex-start' }
+                      borderRadius={ 'full' }
+                      onClick={ () => setSelected(category) }
                     >
-                      <Heading size={ 'md' }>{ section.name }</Heading>
-                      <Icon><LuChevronRight></LuChevronRight></Icon>
+                      { category.name }
                     </Button>
-                    <SimpleGrid columns={ 2 } gap={ '1' }>
-                      {
-                        section.items.map((item) => (
-                          <Button
-                            key={ item }
-                            variant={ 'ghost' }
-                            justifyContent={ 'space-between' }
-                            onClick={ () => search(`${ section.name } ${ item }`) }
-                          >
-                            <Text truncate>{ item }</Text>
-                            <Icon><LuChevronRight></LuChevronRight></Icon>
-                          </Button>
-                        ))
-                      }
-                    </SimpleGrid>
-                  </Box>
-                ))
-              }
-            </Stack>
-          </GridItem>
-        </Grid>
-      </Stack>
-    </Container>
+                  ))
+                }
+              </Stack>
+            </GridItem>
+            <GridItem overflowY={ 'auto' }>
+              <Stack gap={ '6' } paddingRight={ '2' }>
+                {
+                  sections.map((section) => (
+                    <Stack key={ section.name } gap={ '1' }>
+                      <Button
+                        variant={ 'ghost' }
+                        width={ 'full' }
+                        justifyContent={ 'space-between' }
+                        borderRadius={ 'full' }
+                        onClick={ () => search(section.name) }
+                      >
+                        <Heading size={ 'md' }>{ section.name }</Heading>
+                        <Icon><LuChevronRight></LuChevronRight></Icon>
+                      </Button>
+                      <SimpleGrid templateColumns={ 'repeat(auto-fill, minmax(max(140px, calc((100% - 2 * 0.25rem)/3)), 1fr))' } gap={ '1' }>
+                        {/* 칸 최소 140px, 최대 3열: 칸 폭을 max(140px, 1/3)로 잡아 4열 이상 생기지 않게 함. 0.25rem = gap 1 */}
+                        {
+                          section.items.map((item) => (
+                            <Button
+                              key={ item }
+                              variant={ 'ghost' }
+                              justifyContent={ 'space-between' }
+                              borderRadius={ 'full' }
+                              onClick={ () => search(`${ section.name } ${ item }`) }
+                            >
+                              <Text truncate>{ item }</Text>
+                              <Icon><LuChevronRight></LuChevronRight></Icon>
+                            </Button>
+                          ))
+                        }
+                      </SimpleGrid>
+                    </Stack>
+                  ))
+                }
+              </Stack>
+            </GridItem>
+          </Grid>
+        </Stack>
+      </Container>
+    </Stack>
     <TabBar />
     </>
   )
