@@ -77,10 +77,9 @@ export const CategoryPage = () => {
                       <Icon><LuChevronRight></LuChevronRight></Icon>
                     </Button>
                     <Grid
-                      templateColumns={ 'repeat(auto-fill, minmax(max(140px, calc((100% - 2 * 0.25rem)/3)), 1fr))' }
+                      templateColumns={ { base: '1fr', md: '1fr 1fr' } }
                       gap={ 4 }
                     >
-                      {/* 칸 최소 140px, 최대 3열: 칸 폭을 max(140px, 1/3)로 잡아 4열 이상 생기지 않게 함. 0.25rem = gap 1 */ }
                       {
                         section.items.map((item) => (
                           <Button
