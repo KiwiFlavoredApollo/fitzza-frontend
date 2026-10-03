@@ -39,7 +39,6 @@ export const LikesPage = () => {
             products.map((product, index) => (
               <Box
                 key={ index }
-                // borderWidth={ '1px' }
               >
                 <Box
                   position={ 'relative' }
