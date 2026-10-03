@@ -8,14 +8,16 @@ import {
   InputGroup,
   Stack,
   Image,
+  Text,
+  Drawer
 } from '@chakra-ui/react'
 import { AppBar } from '../components/AppBar.jsx'
 import {
   LuArrowUp,
   LuChevronLast,
-  LuChevronLeft,
+  LuChevronLeft, LuEllipsis,
   LuMenu,
-  LuPlus,
+  LuPlus, LuTrophy,
 } from 'react-icons/lu'
 import exampleProductImage from '/src/assets/react.svg'
 
@@ -59,23 +61,34 @@ export const PromptPage = () => {
                   variant={ 'none' }
                 >
                   <Card.Body>
-                    <Flex
-                      direction={ 'row' }
-                      height={ '100%' }
-                      gap={ 4 }
-                      wrap={ 'nowrap' }
-                      overflowX={ 'auto' }
-                    >
-                      {
-                        Array.from({ length: 7 }).map((_, index) => (
-                          <Image
-                            aspectRatio={ 1 }
-                            objectFit={ 'contain' }
-                            src={ exampleProductImage }
-                          ></Image>
-                        ))
-                      }
-                    </Flex>
+                    <Stack gap={ 4 }>
+                      <Grid
+                        templateColumns={ 'repeat(3, 1fr)' }
+                        height={ '100%' }
+                        gap={ 4 }
+                        wrap={ 'nowrap' }
+                        overflowX={ 'auto' }
+                      >
+                        {
+                          Array.from({ length: 8 }).map((_, index) => (
+                            <Image
+                              aspectRatio={ 1 }
+                              width={ '100%' }
+                              objectFit={ 'contain' }
+                              src={ exampleProductImage }
+                            ></Image>
+                          ))
+                        }
+                        <Flex justifyContent={ 'center' }
+                              alignItems={ 'center' }>
+                          <Icon boxSize={ 16 }><LuEllipsis></LuEllipsis></Icon>
+                        </Flex>
+                      </Grid>
+                      <Button>
+                        <Icon><LuTrophy></LuTrophy></Icon>
+                        <Text>월드컵</Text>
+                      </Button>
+                    </Stack>
                   </Card.Body>
                 </Card.Root>
               </Flex>
