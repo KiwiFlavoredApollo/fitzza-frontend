@@ -25,7 +25,6 @@ import {
 import exampleProductImage from '/src/assets/hero.png'
 import exampleBannerImage from '/src/assets/vite.svg'
 import { products } from '/src/data/products.js'
-import { banners } from '/src/data/banners.js'
 import { HiCheck, HiX } from 'react-icons/hi'
 import { AppBar } from '../components/AppBar.jsx'
 import { TabBar } from '../components/TabBar.jsx'
