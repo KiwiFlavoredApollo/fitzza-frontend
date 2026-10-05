@@ -1,5 +1,6 @@
 import { http, HttpResponse } from 'msw/http'
 import users from '../data/users.json'
+import categories from '../data/categories.json'
 import products from '../data/products.json'
 import likes from '../data/likes.json'
 
@@ -16,6 +17,13 @@ export const handlers = [
       }
 
       return HttpResponse.json(user)
+    },
+  ),
+
+  http.get(
+    'http://localhost:8000/api/v1/categories',
+    () => {
+      return HttpResponse.json(categories)
     },
   ),
 
