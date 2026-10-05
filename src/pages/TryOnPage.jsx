@@ -9,79 +9,20 @@ import {
   IconButton,
   Flex,
   Card,
-  Separator, Heading,
+  Separator, Heading, Box, Icon,
+  FileUpload, Input,
+  Drawer, FileUploadList, FileUploadItems, Float,
 } from '@chakra-ui/react'
 import { AppBar } from '../components/AppBar.jsx'
 import exampleResultImage from '/src/assets/hero.png'
 import examplePersonImage from '/src/assets/react.svg'
 import exampleClothesImage from '/src/assets/vite.svg'
 import { Footer } from '../components/Footer.jsx'
-import { LuPlus, LuX } from 'react-icons/lu'
+import { LuPlus, LuUpload, LuX } from 'react-icons/lu'
+import { useState } from 'react'
 
 export const TryOnPage = () => {
-  const getReferenceImages = (direction) => {
-    return (
-      <Stack
-        direction={ direction }
-        gap={ 4 }
-        separator={ <Separator/> }
-        height={ '100%' }
-        width={ '100%' }
-      >
-        <Card.Root
-          justifyContent={ 'center' }
-          alignContent={ 'center' }
-          aspectRatio={ 1 }
-          flexShrink={ 0 }
-        >
-          <Image objectFit={ 'cover' } src={ examplePersonImage }></Image>
-          <IconButton
-            position={ 'absolute' }
-            top={ 0 }
-            right={ 0 }
-            variant={ 'ghost' }
-            rounded={ 'full' }
-          >
-            <LuX></LuX>
-          </IconButton>
-        </Card.Root>
-        <Stack direction={ direction }>
-          <Card.Root aspectRatio={ 1 } flexShrink={ 0 }>
-            <Flex height={ '100%' } align={ 'center' } justify={ 'center' }>
-              <IconButton rounded={ 'full' }>
-                <LuPlus></LuPlus>
-              </IconButton>
-            </Flex>
-          </Card.Root>
-          {
-            Array.from({ length: 5 }, (_, index) => (
-              <Card.Root
-                justifyContent={ 'center' }
-                alignContent={ 'center' }
-                aspectRatio={ 1 }
-                flexShrink={ 0 }
-                key={ index }
-              >
-                <Image
-                  objectFit={ 'cover' }
-                  src={ exampleClothesImage }
-                ></Image>
-                <IconButton
-                  position={ 'absolute' }
-                  top={ 0 }
-                  right={ 0 }
-                  variant={ 'ghost' }
-                  rounded={ 'full' }
-                >
-                  <LuX></LuX>
-                </IconButton>
-              </Card.Root>
-            ))
-          }
-        </Stack>
-      </Stack>
-    )
-  }
+  const uploads = ['인물', '상의', '하의']
 
   return (
     <Grid
@@ -96,40 +37,47 @@ export const TryOnPage = () => {
         <Heading>입어보기</Heading>
       </Container>
 
-      <Container maxWidth={ '3xl' }>
+      <Container
+        maxWidth={ '5xl' }
+        alignContent="center"
+      >
         <Grid
-          templateColumns={ { base: '1fr', md: '3fr 1fr' } }
-          height={ '100%' }
+          templateColumns={ 'repeat(3, 1fr)' }
           gap={ 4 }
         >
-          <Grid
-            templateRows={ { base: '3fr 1fr auto', md: '1fr auto' } }
-            gap={ 4 }
-          >
-            <GridItem justifyItems={ 'center' } alignContent={ 'center' }>
-              <Image src={ exampleResultImage }></Image>
-            </GridItem>
-            <GridItem
-              display={ { md: 'none' } }
-              overflowX="auto"
-              flexWrap="nowrap"
-            >
-              {
-                getReferenceImages('row')
-              }
-            </GridItem>
-            <Button width={ '100%' }>입어보기</Button>
-          </Grid>
-          <Flex
-            display={ { base: 'none', sm: 'flex' } }
-            direction={ 'column' }
-            overflowY="auto"
-            flexWrap="nowrap"
-          >
-            {
-              getReferenceImages('column')
-            }
-          </Flex>
+          {
+            uploads.map((upload, index) => (
+              <FileUpload.Root key={ index }>
+                <FileUpload.HiddenInput/>
+                <FileUpload.Label>{ upload }</FileUpload.Label>
+                <FileUpload.ItemGroup>
+                  <FileUpload.Context>
+                    { ({ acceptedFiles }) => (
+                      <>
+                        { acceptedFiles.length === 0 && (
+                          <FileUpload.Dropzone width="100%" aspectRatio={ 1 }>
+                            <Icon size="md" color="fg.muted">
+                              <LuUpload/>
+                            </Icon>
+                            <FileUpload.DropzoneContent/>
+                          </FileUpload.Dropzone>
+                        ) }
+
+                        { acceptedFiles.map((file) => (
+                          <FileUpload.Item key={ file.name } file={ file }>
+                            <FileUpload.ItemPreviewImage/>
+                            <FileUpload.ItemDeleteTrigger>
+                              <LuX></LuX>
+                            </FileUpload.ItemDeleteTrigger>
+                          </FileUpload.Item>
+                        )) }
+                      </>
+                    ) }
+                  </FileUpload.Context>
+                </FileUpload.ItemGroup>
+              </FileUpload.Root>
+            ))
+          }
         </Grid>
       </Container>
 
