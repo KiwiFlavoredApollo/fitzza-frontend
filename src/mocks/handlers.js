@@ -20,6 +20,20 @@ export const handlers = [
   ),
 
   http.get(
+    'http://localhost:8000/api/v1/products',
+    () => {
+      return HttpResponse.json(products)
+    },
+  ),
+
+  http.get(
+    'http://localhost:8000/api/v1/products/recommended',
+    () => {
+      return HttpResponse.json(products)
+    },
+  ),
+
+  http.get(
     'http://localhost:8000/api/v1/products/:id',
     ({ params }) => {
       const product = products.find(
@@ -34,7 +48,23 @@ export const handlers = [
     },
   ),
 
-  http.get('http://localhost:8000/api/v1/likes', () => {
-    return HttpResponse.json(likes)
-  }),
+  http.get(
+    'http://localhost:8000/api/v1/shopping-cart',
+    () => {
+      return HttpResponse.json(products)
+    },
+  ),
+
+  http.get(
+    'http://localhost:8000/api/v1/checkout',
+    () => {
+      return HttpResponse.json(products)
+    },
+  ),
+
+  http.get(
+    'http://localhost:8000/api/v1/likes',
+    () => {
+      return HttpResponse.json(likes)
+    }),
 ]

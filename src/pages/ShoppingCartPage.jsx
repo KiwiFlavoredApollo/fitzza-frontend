@@ -1,10 +1,28 @@
 import { Button, Container, Grid, Stack, Card, Text, Image, IconButton, Box } from '@chakra-ui/react'
 import { AppBar } from '../components/AppBar.jsx'
-import { products } from '../data/products.js'
 import exampleProductImage from '/src/assets/react.svg'
 import { LuArrowLeft, LuBrackets, LuChevronLeft, LuChevronRight, LuX } from 'react-icons/lu'
+import { api } from '../api/axios.js'
+import { HttpStatusCode } from 'axios'
+import { useEffect, useState } from 'react'
 
 export const ShoppingCartPage = () => {
+  const [products, setProducts] = useState([])
+
+  async function loadShoppingCartProducts () {
+    api.get('/shopping-cart', {}).then(response => {
+      if (response.status !== HttpStatusCode.Ok) {
+        return
+      }
+
+      setProducts(response.data)
+    }).catch(console.error)
+  }
+
+  useEffect(() => {
+    loadShoppingCartProducts()
+  }, [])
+
   return (
     <Container maxWidth={ 'xl' } height={ '100vh' } paddingY={ '4' }>
       <Stack height={ '100%' } gap={ '4' }>
