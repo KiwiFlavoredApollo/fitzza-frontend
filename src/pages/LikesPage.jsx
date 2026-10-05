@@ -6,21 +6,56 @@ import {
   Card,
   Image,
   Text,
-  IconButton, Box, Heading, Flex, Button, Icon,
+  IconButton, Box, Heading, Flex, Button, Icon, Pagination,
 } from '@chakra-ui/react'
 import { AppBar } from '../components/AppBar.jsx'
 import { TabBar } from '../components/TabBar.jsx'
 import { LuHeart, LuTrophy, LuX } from 'react-icons/lu'
-import { products } from '../data/products.js'
-import exampleProductImage from '/src/assets/react.svg'
 import { useNavigate } from 'react-router-dom'
+import { Footer } from '../components/Footer.jsx'
+import { api } from '../api/axios.js'
+import { useContext, useEffect, useState } from 'react'
+import { HttpStatusCode } from 'axios'
+import { UserContext } from '../components/UserContext.jsx'
+import { LikedProductItem } from '../components/LikedProductItem.jsx'
 
 export const LikesPage = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+  const context = useContext(UserContext)
+  const [products, setProducts] = useState([])
+  const [loadedPagesCount, setLoadedPagesCount] = useState(1)
+
+  function isLoggedIn () {
+    return true
+  }
+
+  if (!isLoggedIn()) {
+    navigate('/login')
+  }
+
+  const loadLikedProductItems = async () => {
+    api.get('/likes', {}).then(response => {
+      if (response.status !== HttpStatusCode.Ok) {
+        return
+      }
+
+      setProducts(response.data)
+    }).catch(error => console.log(error))
+  }
+
+  useEffect(() => {
+    loadLikedProductItems()
+  }, [])
 
   return (
-    <Stack paddingY={ 4 } gap={ 4 }>
+    <Grid
+      templateRows={ 'auto auto 1fr auto auto' }
+      paddingY={ 4 }
+      gap={ 4 }
+      minHeight={ '100vh' }
+    >
       <AppBar></AppBar>
+
       <Container maxWidth={ '7xl' }>
         <Flex direction={ 'row' } justifyContent={ 'space-between' }>
           <Heading>찜</Heading>
@@ -33,6 +68,7 @@ export const LikesPage = () => {
           </Button>
         </Flex>
       </Container>
+
       <Container maxWidth={ '5xl' }>
         <Grid
           templateColumns={ { base: 'repeat(3, 1fr)', md: 'repeat(5, 1fr)' } }
@@ -41,39 +77,18 @@ export const LikesPage = () => {
         >
           {
             products.map((product, index) => (
-              <Box
+              <LikedProductItem
                 key={ index }
-              >
-                <Box
-                  position={ 'relative' }
-                >
-                  <Image
-                    width={ '100%' }
-                    aspectRatio={ 1 }
-                    objectFit={ 'contain' }
-                    src={ exampleProductImage }
-                  ></Image>
-                  <IconButton
-                    position={ 'absolute' }
-                    bottom={ '2' }
-                    right={ '2' }
-                    rounded={ 'full' }
-                    variant={ 'ghost' }
-                  >
-                    <LuHeart
-                      color={ 'red' }
-                      fill={ 'red' }
-                    ></LuHeart>
-                  </IconButton>
-                </Box>
-                <Heading>{ product.name }</Heading>
-                <Text>{ (product.price).toLocaleString() } 원</Text>
-              </Box>
+                product={ product }
+              ></LikedProductItem>
             ))
           }
         </Grid>
-        <TabBar/>
       </Container>
-    </Stack>
+
+      <TabBar></TabBar>
+
+      <Footer></Footer>
+    </Grid>
   )
 }
