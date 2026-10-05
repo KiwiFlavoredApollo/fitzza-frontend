@@ -3,13 +3,15 @@ import users from '../data/users.json'
 import categories from '../data/categories.json'
 import products from '../data/products.json'
 import likes from '../data/likes.json'
+import articles from '../data/articles.json'
+import comments from '../data/comments.json'
 
 export const handlers = [
   http.get(
     'http://localhost:8000/api/v1/uers/:id',
     ({ params }) => {
       const user = users.find(
-        product => product.id === Number(params.id),
+        user => user.id === Number(params.id),
       )
 
       if (!user) {
@@ -74,5 +76,37 @@ export const handlers = [
     'http://localhost:8000/api/v1/likes',
     () => {
       return HttpResponse.json(likes)
-    }),
+    },
+  ),
+
+  // TODO
+  // 댓글 필터링을 CommunityArticlePage가 아니라 여기서 하도록 수정
+  http.get(
+    'http://localhost:8000/api/v1/community/article/:id/comments',
+    () => {
+      return HttpResponse.json(comments)
+    },
+  ),
+
+  http.get(
+    'http://localhost:8000/api/v1/community/articles',
+    () => {
+      return HttpResponse.json(articles)
+    },
+  ),
+
+  http.get(
+    'http://localhost:8000/api/v1/community/articles/:id',
+    ({ params }) => {
+      const article = articles.find(
+        product => product.id === Number(params.id),
+      )
+
+      if (!article) {
+        return new HttpResponse(null, { status: 404 })
+      }
+
+      return HttpResponse.json(article)
+    },
+  ),
 ]
