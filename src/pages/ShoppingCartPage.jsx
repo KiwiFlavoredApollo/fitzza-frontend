@@ -1,4 +1,4 @@
-import { Button, Container, Flex, Stack, Card, Text, Image, IconButton, Box, Grid } from '@chakra-ui/react'
+import { Button, Container, Flex, Stack, Card, Text, Image, IconButton, Box, Grid, GridItem } from '@chakra-ui/react'
 import { AppBar } from '../components/AppBar.jsx'
 import { TabBar } from '../components/TabBar.jsx'
 import { products } from '../data/products.js'
@@ -14,7 +14,7 @@ export const ShoppingCartPage = () => {
         </Container>
       </Box>
 
-      <Container maxW="5xl" mx="auto" px={5}>
+      <Container maxW="7xl" mx="auto" px={5}>
         <Stack gap={6}>
           <Text textStyle="lg" fontWeight="bold">
             장바구니
@@ -29,7 +29,7 @@ export const ShoppingCartPage = () => {
                     <Card.Root key={index} variant="subtle" borderWidth="thin" borderColor="border.subtle" bg="bg.panel" position="relative">
                       <Card.Body>
                         <Grid
-                          templateColumns="80px 1fr auto"
+                          templateColumns="5rem 1fr auto"
                           templateAreas={`"image info action"`}
                           gap={4}
                           alignItems="center"
