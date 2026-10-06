@@ -39,4 +39,40 @@ Base URL: `/api/v1`
 
 ### `GET /products`
 
+- `GET /products?category=topwear`
+- `GET /products?category=bottomwear`
+
 ### `GET /products/{productId}`
+
+### `GET /categories`
+
+```json
+[
+  {
+    "name": "topwear",
+    "translation": [
+      {
+        "locale": "ko-KR",
+        "name": "상의"
+      },
+      {
+        "locale": "en-US",
+        "name": "Topwear"
+      }
+    ]
+  },
+  {
+    "name": "bottomwear",
+    "translation": [
+      {
+        "locale": "ko-KR",
+        "name": "하의"
+      },
+      {
+        "locale": "en-US",
+        "name": "Bottomwear"
+      }
+    ]
+  }
+]
+```
