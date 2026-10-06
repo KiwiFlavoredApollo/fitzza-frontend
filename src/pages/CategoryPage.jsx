@@ -39,7 +39,7 @@ export const CategoryPage = () => {
 
       <Container maxWidth={ '3xl' } flex={ '1' } minHeight={ '0' }>
         <Grid
-          templateColumns={ '1fr 3fr' }
+          templateColumns={ '1fr 4fr' }
           gap={ 4 }
           minHeight={ '0' }
         >
@@ -77,7 +77,7 @@ export const CategoryPage = () => {
                       <Icon><LuChevronRight></LuChevronRight></Icon>
                     </Button>
                     <Grid
-                      templateColumns={ { base: '1fr', md: '1fr 1fr' } }
+                      templateColumns={ { base: '1fr', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' } }
                       gap={ 4 }
                     >
                       {
