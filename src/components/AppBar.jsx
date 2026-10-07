@@ -1,5 +1,5 @@
 import { Box, Container, Grid, GridItem, IconButton, Popover, Portal, Separator, Stack, Text } from '@chakra-ui/react'
-import { LuBell, LuShirt, LuShoppingBag, LuUsers } from 'react-icons/lu'
+import { LuBell, LuShoppingBag } from 'react-icons/lu'
 import { useNavigate } from 'react-router-dom'
 
 export const AppBar = ({ maxWidth = '7xl' }) => {
@@ -21,9 +21,6 @@ export const AppBar = ({ maxWidth = '7xl' }) => {
         <GridItem></GridItem>
         <GridItem>
           <Stack direction={ 'row' } gap={ 2 }>
-            <IconButton { ...buttonProps } onClick={ () => { navigate('/try-on') } }>
-              <LuShirt></LuShirt>
-            </IconButton>
             <Popover.Root>
               <Popover.Trigger asChild>
                 <IconButton { ...buttonProps }>
