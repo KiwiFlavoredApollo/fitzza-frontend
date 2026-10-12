@@ -14,7 +14,6 @@ import {
   Text,
 } from "@chakra-ui/react";
 import {
-  LuChevronLeft,
   LuMessageCircle,
   LuPencil,
   LuSearch,
@@ -90,52 +89,46 @@ export const CommunityMainPage = () => {
 
   return (
     <>
-    <Container maxWidth="xl" minHeight="100vh" paddingY="4" position="relative">
-      <Stack direction="column" gap="4">
-        {/* 상단 로고 바 */}
+    <Stack direction="column" gap="4" minHeight="100vh" paddingY="4">
+      {/* 상단 로고 바 */}
         <AppBar></AppBar>
 
-        {/* 커뮤니티 헤더 */}
-        <Flex align="center" justify="space-between">
-          <HStack gap="2">
-            <IconButton rounded="full" variant="ghost" size="sm" aria-label="뒤로">
-              <LuChevronLeft />
-            </IconButton>
-            <Text fontSize="lg" fontWeight="semibold">
-              커뮤니티
-            </Text>
+      <Container maxWidth="3xl">
+        <Stack direction="column" gap="4">
+          {/* 커뮤니티 헤더 */}
+          <Text fontSize="lg" fontWeight="semibold">
+            커뮤니티
+          </Text>
+
+          {/* 검색 입력 (선택) */}
+          <InputGroup startElement={<LuSearch />}>
+            <Input placeholder="검색" rounded="lg" bg="bg.subtle" />
+          {/*  제목 및 내용으로 검색 기능 추가 필요 TO-DO-NEXT */}
+          </InputGroup>
+
+          {/* 카테고리 탭 */}
+          <HStack gap="2" overflowX="auto">
+            {CATEGORIES.map((cat) => (
+              <Button
+                key={cat}
+                size="sm"
+                rounded="full"
+                flexShrink="0"
+                variant={selected === cat ? "solid" : "outline"}
+                colorPalette="gray"
+                onClick={() => categoryHandler(cat)}
+              >
+                {cat}
+              </Button>
+            ))}
           </HStack>
-          <IconButton rounded="full" variant="ghost" aria-label="검색">
-            <LuSearch />
-          </IconButton>
-        </Flex>
+        </Stack>
+      </Container>
 
-        {/* 검색 입력 (선택) */}
-        <InputGroup startElement={<LuSearch />}>
-          <Input placeholder="검색" rounded="lg" bg="gray.50" />
-        {/*  제목 및 내용으로 검색 기능 추가 필요 TO-DO-NEXT */}
-        </InputGroup>
-
-        {/* 카테고리 탭 */}
-        <HStack gap="2" overflowX="auto">
-          {CATEGORIES.map((cat) => (
-            <Button
-              key={cat}
-              size="sm"
-              rounded="full"
-              flexShrink="0"
-              variant={selected === cat ? "solid" : "outline"}
-              colorPalette="gray"
-              onClick={() => categoryHandler(cat)}
-            >
-              {cat}
-            </Button>
-          ))}
-        </HStack>
-
-        {/* 게시글 리스트 */}
-        <Stack direction="column" gap="0" paddingBottom="20" separator={<Box borderBottomWidth="1px" />}>
-          {loading && <Text color="gray.500" paddingY="4">불러오는 중...</Text>}
+      {/* 게시글 리스트 */}
+      <Container maxWidth="3xl" paddingBottom="20">
+        <Stack direction="column" gap="0" separator={<Box borderBottomWidth="1px" />}>
+          {loading && <Text color="fg.muted" paddingY="4">불러오는 중...</Text>}
           {error && <Text color="red.500" paddingY="4">{error}</Text>}
           {articles.map((article) => (
             <ArticleItem
@@ -145,24 +138,24 @@ export const CommunityMainPage = () => {
             />
           ))}
         </Stack>
-      </Stack>
+      </Container>
+    </Stack>
 
       {/* 글쓰기 플로팅 버튼 */}
       <Box position="fixed" bottom="calc(env(safe-area-inset-bottom, 0px) + 96px)" left="0" right="0" pointerEvents="none">
-        <Container maxWidth="xl" display="flex" justifyContent="flex-end">
+        <Container maxWidth="3xl" display="flex" justifyContent="flex-end">
           <IconButton
             rounded="full"
-            colorPalette="orange"
             size="xl"
             aria-label="글쓰기"
             pointerEvents="auto"
+            colorPalette="primary"
             onClick={writeHandler}
           >
             <LuPencil />
           </IconButton>
         </Container>
       </Box>
-    </Container>
     <TabBar />
     </>
   );
@@ -182,13 +175,13 @@ const ArticleItem = ({ article, onClick }) => {
         <Badge width="fit-content" colorPalette="gray">
           {category}
         </Badge>
-        <HStack gap="2" color="gray.500" fontSize="sm">
+        <HStack gap="2" color="fg.muted" fontSize="sm">
           <Box boxSize="6" rounded="full" bg="gray.200" flexShrink="0" />
           <Text>{author}</Text>
           <Text>·</Text>
           <Text>{time}</Text>
         </HStack>
-        <HStack gap="4" color="gray.500" fontSize="sm">
+        <HStack gap="4" color="fg.muted" fontSize="sm">
           <HStack gap="1">
             <LuThumbsUp />
             <Text>{likes}</Text>
