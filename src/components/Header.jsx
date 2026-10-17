@@ -13,13 +13,24 @@ export const Header = ({ maxWidth = '7xl' }) => {
     setIsLoggedIn(!!token)
   }, [])
 
-  const handleAuthAction = () => {
+  const handleAuthAction = async () => {
     if (isLoggedIn) {
-      api.post('/auth/logout').catch(() => {})
-      localStorage.removeItem("accessToken")
-      setIsLoggedIn(false)
-      alert("로그아웃되었습니다.")
-      navigate("/signin")
+      try {
+        const refreshToken = localStorage.getItem("refreshToken")
+
+        // /auth/signout 엔드포인트 호출 및 리프레시 토큰 전달
+        await api.post('/auth/signout', { refreshToken })
+      } catch (error) {
+        // 서버 요청에 실패하더라도 클라이언트 측 로그아웃 처리는 정상 진행
+        console.error("Signout failed:", error)
+      } finally {
+        // 토큰 및 인증 정보 정리
+        localStorage.removeItem("accessToken")
+        localStorage.removeItem("refreshToken")
+        setIsLoggedIn(false)
+        alert("로그아웃되었습니다.")
+        navigate("/signin")
+      }
     } else {
       navigate("/signin")
     }
